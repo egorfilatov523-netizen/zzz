@@ -1,6 +1,5 @@
-aiogram>=3.0
-qrcode[pil]
-Pillow
-opencv-python-headless
-numpy
- 
+aiogram==3.22.0
+qrcode[pil]==8.2
+Pillow==11.2.1
+opencv-python-headless==4.11.0.86
+numpy==2.2.6
