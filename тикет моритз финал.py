@@ -278,18 +278,16 @@ async def generate_qr(ticket_id: str, username: str = "") -> bytes:
  
 def _decode_qr_sync(image_bytes: bytes) -> str | None:
     try:
-        nparr = np.frombuffer(image_bytes, np.uint8)
-        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-
+        arr     = np.frombuffer(image_bytes, dtype=np.uint8)
+        img_cv  = cv2.imdecode(arr, cv2.IMREAD_COLOR)
+        if img_cv is None:
+            return None
         detector = cv2.QRCodeDetector()
-        data, points, _ = detector.detectAndDecode(img)
-
+        data, _, _ = detector.detectAndDecode(img_cv)
         if data:
             return data.strip().upper()
-
     except Exception as e:
         logger.error(f"QR decode error: {e}")
-
     return None
  
  
