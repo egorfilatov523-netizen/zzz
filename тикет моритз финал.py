@@ -9,7 +9,8 @@ import csv
 import hashlib
 from datetime import datetime
 from functools import lru_cache
-from pyzbar.pyzbar import decode as qr_decode
+import cv2
+import numpy as np
 from PIL import Image, ImageDraw, ImageFont
  
 from aiogram import Bot, Dispatcher, F, Router
